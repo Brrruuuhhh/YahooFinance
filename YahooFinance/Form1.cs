@@ -46,15 +46,15 @@ namespace YahooFinance
                 JArray closePrices = (JArray)data["chart"]["result"][0]["indicators"]["quote"][0]["close"];
 
                 
-                string message = "Символ: " + symbol + "\n" +
-                    "Название биржи: " + exchangeName + "\n" +
-                    "Тип инструмента: " + instrumentType + "\n" +
-                    "Первый день торгов: " + new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(firstTradeDate).ToLocalTime().ToString("dd/MM/yyyy") + "\n" +
-                    "Обычное время на рынке: " + new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(regularMarketTime).ToLocalTime().ToString("dd/MM/yyyy hh:mm tt") + "\n" +
-                    "Смещение времени по Гринвичу: " + TimeSpan.FromSeconds(gmtoffset).ToString(@"hh\:mm") + "\n" +
-                    "Часовой пояс: " + timezone + "\n" +
-                    "Валюта: " + currency;
-                    message += "\nВремя и стоимость на закрытии\n";
+                string message = "РЎРёРјРІРѕР»: " + symbol + "\n" +
+                    "РќР°Р·РІР°РЅРёРµ Р±РёСЂР¶Рё: " + exchangeName + "\n" +
+                    "РўРёРї РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°: " + instrumentType + "\n" +
+                    "РџРµСЂРІС‹Р№ РґРµРЅСЊ С‚РѕСЂРіРѕРІ: " + new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(firstTradeDate).ToLocalTime().ToString("dd/MM/yyyy") + "\n" +
+                    "РћР±С‹С‡РЅРѕРµ РІСЂРµРјСЏ РЅР° СЂС‹РЅРєРµ: " + new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(regularMarketTime).ToLocalTime().ToString("dd/MM/yyyy hh:mm tt") + "\n" +
+                    "РЎРјРµС‰РµРЅРёРµ РІСЂРµРјРµРЅРё РїРѕ Р“СЂРёРЅРІРёС‡Сѓ: " + TimeSpan.FromSeconds(gmtoffset).ToString(@"hh\:mm") + "\n" +
+                    "Р§Р°СЃРѕРІРѕР№ РїРѕСЏСЃ: " + timezone + "\n" +
+                    "Р’Р°Р»СЋС‚Р°: " + currency;
+                    message += "\nР’СЂРµРјСЏ Рё СЃС‚РѕРёРјРѕСЃС‚СЊ РЅР° Р·Р°РєСЂС‹С‚РёРё\n";
                     DateTime prevDay = new DateTime();
                     for (int i = 0; i < timeSeries.Count; i++)
                     {
@@ -62,11 +62,11 @@ namespace YahooFinance
                         dateTime = dateTime.AddSeconds((long)timeSeries[i]).ToLocalTime();
                         message += dateTime.ToString("dd/MM/yyyy") + ", " + Math.Round((double)closePrices[i], 2) + "\n";
                     }
-                MessageBox.Show(message, "Информация об акции");
+                MessageBox.Show(message, "РРЅС„РѕСЂРјР°С†РёСЏ РѕР± Р°РєС†РёРё");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Введенной вами ценной бумаги не существует :(");
+                MessageBox.Show("Р’РІРµРґРµРЅРЅРѕР№ РІР°РјРё С†РµРЅРЅРѕР№ Р±СѓРјР°РіРё РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ :(");
             }
 
         }
